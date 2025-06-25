@@ -6,6 +6,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.GenerationType;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import com.crud.crud.model.Mentorships;
+import com.crud.crud.repository.MentorshipsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Entity
 public class Mentorships {
     @Id
@@ -34,8 +40,34 @@ public class Mentorships {
     public void setFrequency(String frequency){
         this.frequency = frequency;
     }
-    public void setRequirements(String requierements){
+    public void setRequirements(String requirements){
         this.requirements = requirements;
     }
+    public void setDuration(int duration){
+        this.duration = duration;
+    }
 
+    public String getTitle(){
+        return title;
+    }
+
+    public String getDescription(){
+        return description;
+    }
+
+    public String getTeacher(){
+        return teacher;
+    }
+    public String getPlace(){
+        return place;
+    }
+    public String getFrequency(){
+        return frequency;
+    }
+    public String getRequirements(){
+        return requirements;
+    }
+    public int getDuration(){
+        return duration;
+    }
 }
