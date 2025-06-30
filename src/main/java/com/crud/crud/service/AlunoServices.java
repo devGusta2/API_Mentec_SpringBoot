@@ -35,6 +35,25 @@ public class AlunoServices implements AlunoRepository{
         alunoRepository.findAll().forEach(alunos::add);
         return alunos;
     }
+
+
+    public void deletar(Long id) {
+        alunoRepository.deleteById(id);
+    }
+
+    public Aluno atualizar(Long id, Aluno alunoAtualizado) {
+        Optional<Aluno> alunoOptional = alunoRepository.findById(id);
+        if (alunoOptional.isPresent()) {
+            Aluno alunoExistente = alunoOptional.get();
+            alunoExistente.setNome(alunoAtualizado.getNome());
+            alunoExistente.setCurso(alunoAtualizado.getCurso());
+            alunoExistente.setSexo(alunoAtualizado.getSexo());
+            return alunoRepository.save(alunoExistente);
+        } else {
+            throw new RuntimeException("Aluno com ID " + id + " não encontrado.");
+        }
+    }
+
     @Override
     public void delete(Aluno entity) {
         // TODO Auto-generated method stub
