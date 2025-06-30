@@ -3,9 +3,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.crud.crud.model.Aluno;
 import com.crud.crud.repository.AlunoRepository;
-
+@Service
 public class AlunoServices implements AlunoRepository{
 
     private final AlunoRepository alunoRepository;

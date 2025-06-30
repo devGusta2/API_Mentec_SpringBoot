@@ -1,8 +1,9 @@
-package controller;
+package com.crud.crud.controller;
 
 import com.crud.crud.model.Mentorships;
 import com.crud.crud.repository.MentorshipsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,10 @@ public class MentorshipsController {
 
     @Autowired
     private MentorshipsRepository repository;
+   @GetMapping("/ping")
+public ResponseEntity<String> ping() {
+    return ResponseEntity.ok("Pong");
+}
 
     @PostMapping("/save")
     public Mentorships save(@RequestBody Mentorships a) {

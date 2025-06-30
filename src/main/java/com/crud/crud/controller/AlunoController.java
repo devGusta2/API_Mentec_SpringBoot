@@ -1,4 +1,4 @@
-package controller;
+package com.crud.crud.controller;
 
 import java.util.List;
 
