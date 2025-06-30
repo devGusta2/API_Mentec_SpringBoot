@@ -37,7 +37,7 @@ public class MentorshipsController {
  
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
-        repository.deletar(id);
+        repository.deleteById(id);
         return "Mnetoria com ID " + id + " foi deletado com sucesso.";
     }
     
