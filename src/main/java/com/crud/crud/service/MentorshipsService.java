@@ -1,4 +1,5 @@
 package com.crud.crud.service;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -9,16 +10,60 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 
+
 import com.crud.crud.model.Mentorships;
 import com.crud.crud.repository.MentorshipsRepository;
 
 
 
 public class MentorshipsService implements MentorshipsRepository{
+
+
     private final MentorshipsRepository mentorshipsRepository;
     public MentorshipsService(MentorshipsRepository mentorshipsRepository ){
         this.mentorshipsRepository = mentorshipsRepository;
     }
+
+   
+    public Mentorships salvar(Mentorships mentorships){
+        return mentorshipsRepository.save(mentorships);
+    }
+
+    public List<Mentorships> listarTodos(){
+        List<Mentorships> mentorships = new ArrayList<>();
+        mentorshipsRepository.findAll().forEach(mentorships::add);
+        return mentorships;
+    }
+
+    public void deletar(Long id){
+        mentorshipsRepository.deleteById(id);
+    }
+
+    //  public Mentorships atualizar(Long id, Mentorships newMentorships) {
+    //     Optional<Mentorships> optMentorships = mentorshipsRepository.findById(id);
+    //     if (optMentorships.isPresent()) {
+    //         Mentorships extMentorships = optMentorships.get();
+    //         extMentorships.setTitle(optMentorships.getTitle());
+    //         extMentorships.setDescription(optMentorships.getDescription());
+    //         extMentorships.setTeacher(null).(optMentorships.getTeacher());
+    //         return mentorshipsRepository.save(extMentorships);
+    //     } else {
+    //         throw new RuntimeException("Mentoria com ID " + id + " não encontrado.");
+    //     }
+    // }
+
+
+
+
+
+
+
+
+
+
+
+
+
     @Override
     public void flush() {
         // TODO Auto-generated method stub
