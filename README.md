@@ -1,10 +1,10 @@
-🔧 Passos:
+##🔧 Passos:
 Clone o repositório:
 
 bash
 Copiar
 Editar
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone 
 cd meu-projeto/backend
 Configure o arquivo application.properties (exemplo):
 
