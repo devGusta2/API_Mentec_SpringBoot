@@ -24,7 +24,16 @@ public class Mentorships {
     private String frequency;
     private String requirements;
     private int duration;
-
+    private String goal;
+    public Long getId() {
+            return id;
+        }
+         public void setId(Long id) {
+        this.id = id;
+    }
+    public void setGoal(String goal){
+            this.goal = goal;
+        }
     public void setTitle(String title){
         this.title = title;
     }
@@ -66,6 +75,9 @@ public class Mentorships {
     }
     public String getRequirements(){
         return requirements;
+    }
+     public String getGoal(){
+        return goal;
     }
     public int getDuration(){
         return duration;

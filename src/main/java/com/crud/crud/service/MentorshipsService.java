@@ -39,18 +39,20 @@ public class MentorshipsService implements MentorshipsRepository{
         mentorshipsRepository.deleteById(id);
     }
 
-    //  public Mentorships atualizar(Long id, Mentorships newMentorships) {
-    //     Optional<Mentorships> optMentorships = mentorshipsRepository.findById(id);
-    //     if (optMentorships.isPresent()) {
-    //         Mentorships extMentorships = optMentorships.get();
-    //         extMentorships.setTitle(optMentorships.getTitle());
-    //         extMentorships.setDescription(optMentorships.getDescription());
-    //         extMentorships.setTeacher(null).(optMentorships.getTeacher());
-    //         return mentorshipsRepository.save(extMentorships);
-    //     } else {
-    //         throw new RuntimeException("Mentoria com ID " + id + " não encontrado.");
-    //     }
-    // }
+public Mentorships atualizar(Long id, Mentorships newMentorship) {
+        Mentorships mentorship = mentorshipsRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Mentoria com ID " + id + " não encontrada."));
+
+        mentorship.setTitle(newMentorship.getTitle());
+        mentorship.setDescription(newMentorship.getDescription());
+
+        // Atualiza o goal somente se for diferente de null ou vazio
+        if (newMentorship.getGoal() != null && !newMentorship.getGoal().isBlank()) {
+            mentorship.setGoal(newMentorship.getGoal());
+        }
+
+        return mentorshipsRepository.save(mentorship);
+    }
 
 
 
