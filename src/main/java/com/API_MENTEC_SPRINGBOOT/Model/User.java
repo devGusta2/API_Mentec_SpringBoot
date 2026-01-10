@@ -1,6 +1,5 @@
 package com.API_MENTEC_SPRINGBOOT.Model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -12,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import com.API_MENTEC_SPRINGBOOT.Enum.RoleUser;
 
 @Entity
 @Table(name = "tb_user")
@@ -36,4 +36,6 @@ public class User {
 
     private LocalDateTime criadoEm;
     
+    private RoleUser role;
+
 }
