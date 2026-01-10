@@ -1,5 +1,7 @@
 package com.API_MENTEC_SPRINGBOOT.Model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -26,9 +28,12 @@ public class User {
     private String sobrenome;
     private String email;
     private String senha;
-    
+
     @Column(unique = true)
     private String cpf;
 
+    private boolean isActive;
+
+    private LocalDateTime criadoEm;
     
 }
