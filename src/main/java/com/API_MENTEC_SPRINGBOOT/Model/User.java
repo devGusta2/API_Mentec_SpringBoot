@@ -53,4 +53,12 @@ public class User {
     )
     private Set<Role> roles;
 
+
+    public enum Values{
+        ESTUDANTEFATEC,
+        BASICO,
+        PROFESSOR,
+        ADMIN
+    }
+
 }
