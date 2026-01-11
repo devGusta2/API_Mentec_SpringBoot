@@ -1,6 +1,5 @@
 package com.API_MENTEC_SPRINGBOOT.Model;
 
-import java.time.Period;
 
 import com.API_MENTEC_SPRINGBOOT.Enum.Periodo;
 
