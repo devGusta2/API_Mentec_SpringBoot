@@ -1,5 +1,23 @@
 package com.API_MENTEC_SPRINGBOOT.Model;
 
+import java.time.Period;
+
+import com.API_MENTEC_SPRINGBOOT.Enum.Periodo;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Table(name = "tb_aluno_fatec")
+@Getter
+@Setter
 public class AlunoFatec extends User{
-    
+
+
+
+    private String ra;
+    private String curso;
+    private Periodo periodo;
 }
