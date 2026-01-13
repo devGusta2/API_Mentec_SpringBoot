@@ -55,10 +55,16 @@ public class User {
 
 
     public enum Values{
-        ESTUDANTEFATEC,
-        BASICO,
-        PROFESSOR,
-        ADMIN
+        ESTUDANTEFATEC(2L),
+        BASICO(1L),
+        PROFESSOR(3L),
+        ADMIN(4L);
+
+        Long roleId;
+
+        Values(Long roleId){
+            this.roleId = roleId;
+        }
     }
 
 }
