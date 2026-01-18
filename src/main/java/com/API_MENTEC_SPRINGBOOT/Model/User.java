@@ -42,7 +42,6 @@ public class User {
 
     private LocalDateTime criadoEm;
     
-    private Set<Role> role;
 
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
