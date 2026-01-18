@@ -9,7 +9,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_aluno_fatec")
 @Getter
 @Setter
 public class AlunoFatec extends User{
