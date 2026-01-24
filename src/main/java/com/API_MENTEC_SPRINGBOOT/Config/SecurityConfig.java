@@ -1,5 +1,8 @@
 package com.API_MENTEC_SPRINGBOOT.Config;
 
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -7,6 +10,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+
+import org.springframework.beans.factory.annotation.Value;
 
 
 @Configuration
@@ -22,4 +27,13 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
     }
+
+    @Value("${jwt.public.key}")
+    private RSAPublicKey publicKey;
+
+    @Value("${jwt.private.key}")
+    private RSAPrivateKey privatekey;
+
+
+
 }
