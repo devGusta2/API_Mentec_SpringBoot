@@ -4,6 +4,10 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.API_MENTEC_SPRINGBOOT.DTO.LoginRequest;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -64,6 +68,14 @@ public class User {
         Values(Long roleId){
             this.roleId = roleId;
         }
+    }
+
+
+    public boolean isLoginCorrect(LoginRequest loginRequest, PasswordEncoder passwordEncoder){
+
+        return passwordEncoder.matches(loginRequest.senha(), this.senha);
+
+      
     }
 
 }
