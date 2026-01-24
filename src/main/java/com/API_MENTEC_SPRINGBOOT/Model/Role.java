@@ -1,5 +1,7 @@
 package com.API_MENTEC_SPRINGBOOT.Model;
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,4 +21,21 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roleId;
     private String name;
+
+
+       private Set<Role> roles;
+
+
+    public enum Values{
+        ESTUDANTEFATEC(2L),
+        BASICO(1L),
+        PROFESSOR(3L),
+        ADMIN(4L);
+
+        Long roleId;
+
+        Values(Long roleId){
+            this.roleId = roleId;
+        }
+    }
 }
