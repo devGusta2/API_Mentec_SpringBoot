@@ -47,28 +47,19 @@ public class User {
     private LocalDateTime criadoEm;
     
 
+    @Column(length = 20)
+    private String role; 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER) 
     @JoinTable(
-        name = "tb_user_role",
+        name = "tb_users_roles",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id")
+
     )
-    private Set<Role> roles;
-
-
-    public enum Values{
-        ESTUDANTEFATEC(2L),
-        BASICO(1L),
-        PROFESSOR(3L),
-        ADMIN(4L);
-
-        Long roleId;
-
-        Values(Long roleId){
-            this.roleId = roleId;
-        }
-    }
+    private Set<Role>roles;
+ 
 
 
     public boolean isLoginCorrect(LoginRequest loginRequest, PasswordEncoder passwordEncoder){
