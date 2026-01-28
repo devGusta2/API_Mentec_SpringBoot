@@ -23,8 +23,6 @@ public class Role {
     private String name;
 
 
-       private Set<Role> roles;
-
 
     public enum Values{
         ESTUDANTEFATEC(2L),

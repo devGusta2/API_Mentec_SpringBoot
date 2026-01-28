@@ -8,7 +8,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.API_MENTEC_SPRINGBOOT.DTO.LoginRequest;
@@ -16,6 +18,7 @@ import com.API_MENTEC_SPRINGBOOT.DTO.LoginResponse;
 import com.API_MENTEC_SPRINGBOOT.Repository.UserRepository;
 
 @RestController
+@RequestMapping
 public class TokenController {
     private final JwtEncoder jwtEncoder;
     private final UserRepository userRepository;
@@ -27,14 +30,14 @@ public class TokenController {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
-
+    @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         var user = userRepository.findByEmail(loginRequest.email());
         if (user.isEmpty() || !user.get().isLoginCorrect(loginRequest, bCryptPasswordEncoder)) {
             throw new BadCredentialsException("Usuario ou senha inválidos");
         }
 
-        var expiresIn = 300L;
+        var expiresIn = 99999L;
         var now = Instant.now();
         var claims = JwtClaimsSet.builder()
                 .issuer("mybackend")
