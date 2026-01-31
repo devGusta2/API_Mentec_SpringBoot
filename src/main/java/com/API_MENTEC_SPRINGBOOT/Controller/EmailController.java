@@ -1,6 +1,6 @@
 package com.API_MENTEC_SPRINGBOOT.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +26,7 @@ public class EmailController {
         emailServices.enviarEmailParaConfirmação(dto);
     }
     @PostMapping("/verify")
-    
+
     public String verificarCodigo(@RequestBody VerificacaoDto dto){
         return emailServices.verificarCodigo(dto);
     }
