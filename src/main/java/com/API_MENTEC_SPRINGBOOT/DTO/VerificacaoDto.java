@@ -6,7 +6,4 @@ public record VerificacaoDto(
     String email,
     Long codigo
 
-
-
-    
 ){}

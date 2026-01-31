@@ -1,5 +1,6 @@
 package com.API_MENTEC_SPRINGBOOT.Config;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
 
@@ -33,30 +34,36 @@ public class AdminUserConfig implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        // 1️⃣ Garantir que a role ADMIN exista no banco
-        Role roleAdmin = Optional.ofNullable(roleRepository.findByName("ADMIN"))
-                .orElseGet(() -> {
-                    Role newRole = new Role();
-                    newRole.setName("ADMIN");
-                    return roleRepository.save(newRole);
-                });
+        // 1️⃣ Criar TODAS as roles necessárias (Garante que não haverá NPE)
+        Role roleAdmin = createRoleIfNotFound("ADMIN");
+        createRoleIfNotFound("ESTUDANTEFATEC");
+        createRoleIfNotFound("BASICO");
+        createRoleIfNotFound("PROFESSOR");
 
         // 2️⃣ Verificar se o admin já existe
         Optional<User> userAdmin = userRepository.findByEmail("fatec.admin");
 
-        userAdmin.ifPresentOrElse(
-                admin -> System.out.println("Admin já existe"),
-                () -> {
-                    // 3️⃣ Criar o admin se não existir
-                    User user = new User();
-                    user.setEmail("fatec.admin");
-                    user.setSenha(bCryptPasswordEncoder.encode("123"));
-                    user.setRole("ADMIN"); // Tipo de usuário rápido
-                    user.setRoles(Set.of(roleAdmin)); // Roles para segurança
-                    user.setActive(true); // Ativar o usuário
-                    userRepository.save(user);
-                    System.out.println("Admin criado com sucesso!");
-                }
-        );
+        if (userAdmin.isEmpty()) {
+            User user = new User();
+            user.setEmail("fatec.admin");
+            user.setSenha(bCryptPasswordEncoder.encode("123"));
+            user.setRole("ADMIN");
+            user.setRoles(Set.of(roleAdmin));
+            user.setActive(true);
+            user.setCriadoEm(LocalDateTime.now());
+            userRepository.save(user);
+            System.out.println("Admin criado com sucesso!");
+        }
+    }
+
+    // Método auxiliar para evitar repetição
+    private Role createRoleIfNotFound(String name) {
+        Role role = roleRepository.findByName(name);
+        if (role == null) {
+            Role newRole = new Role();
+            newRole.setName(name);
+            return roleRepository.save(newRole);
+        }
+        return role;
     }
 }

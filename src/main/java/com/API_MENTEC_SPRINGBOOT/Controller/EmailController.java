@@ -26,8 +26,9 @@ public class EmailController {
         emailServices.enviarEmailParaConfirmação(dto);
     }
     @PostMapping("/verify")
-    public void verificarCodigo(@RequestBody VerificacaoDto dto){
-        emailServices.verificarCodigo(dto);
+    
+    public String verificarCodigo(@RequestBody VerificacaoDto dto){
+        return emailServices.verificarCodigo(dto);
     }
 
 }
