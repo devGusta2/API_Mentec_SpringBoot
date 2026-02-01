@@ -6,7 +6,6 @@ public record EmailDto(
     String destinatario,
     String nome,
     String sobrenome,
-    String email,
     String senha,
     String cpf
 
