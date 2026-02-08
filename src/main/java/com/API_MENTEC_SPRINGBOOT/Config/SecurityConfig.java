@@ -44,6 +44,7 @@ public class SecurityConfig {
     public SecurityFilterChain publicSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .securityMatcher("/login", "/email/**", "/email/verify/**") // só rotas públicas
+                .cors(cors -> {})
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
